@@ -19,6 +19,8 @@ description: >-
   infrastructure, mobility, and consumer applications.
 apis: []
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/dow-chemical
   - type: Website
     url: https://www.dow.com
 maintainers:
