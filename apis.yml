@@ -19,6 +19,8 @@ description: >-
   infrastructure, mobility, and consumer applications.
 apis: []
 common:
+  - type: DomainSecurity
+    url: security/dow-chemical-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/dow-chemical
   - type: Website
