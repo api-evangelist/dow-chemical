@@ -1,0 +1,53 @@
+# Dow Chemical (Dow Inc.)
+
+> Dow Inc. is a global materials science company headquartered in Midland, Michigan,
+> operating in Packaging and Specialty Plastics, Industrial Intermediates and
+> Infrastructure, and Performance Materials and Coatings. This file is an independent
+> third-party index maintained by API Evangelist (apievangelist.com), NOT published by Dow.
+> Dow does not serve an llms.txt of its own — https://www.dow.com/llms.txt returns HTTP 404.
+
+## Status of Dow's API surface
+
+Dow publishes **no public API**. As of 2026-09-07 there is no developer portal, no API
+reference, no OpenAPI/AsyncAPI/GraphQL/SOAP contract, no SDK on any public package
+registry, no MCP server and no A2A agent card on any host Dow controls. dow.com is an
+Adobe Experience Manager marketing and product-catalog site; ordering, technical
+datasheets and SDS retrieval are human web workflows behind a customer account, and
+Dow's own order-management page describes no programmatic or EDI integration path.
+Do not infer an endpoint. There is nothing here for an agent to call.
+
+## Machine-readable things Dow does serve
+
+- [security.txt](https://www.dow.com/.well-known/security.txt): RFC 9116, HTTP 200,
+  served identically on www.dow.com, dow.com, legal.dow.com and corporate.dow.com.
+  Contact vulnerabilitydisclosure@dow.com; policy at https://www.synack.com/vdp/dow/.
+  No Expires field, which RFC 9116 requires.
+- [robots.txt](https://www.dow.com/robots.txt): HTTP 200, names six locale sitemaps and
+  disallows the AEM search servlet (`/*/.search.servlet.json`) and the site search paths.
+- [en-US sitemap](https://www.dow.com/en-us/sitemap.xml): HTTP 200, ~6,100 URLs, almost
+  entirely product detail pages.
+
+## Human surfaces
+
+- [Dow](https://www.dow.com): corporate and product site.
+- [Customer support](https://www.dow.com/en-us/support.html): order management, SDS
+  finder, regulatory data sheets, product stewardship.
+- [Order management](https://www.dow.com/en-us/support/order-management.html): web-based
+  ordering. "Not all customers have access to place an order on Dow.com" — access is
+  arranged through a Dow customer service representative.
+- [Log in](https://www.dow.com/en-us/login.html): customer account sign-in.
+- [How to buy](https://www.dow.com/en-us/how-to-buy.html)
+- [Newsroom](https://corporate.dow.com/en-us/news.html)
+- [Terms of use](https://legal.dow.com/en-us/terms-of-use)
+- [Privacy statement](https://legal.dow.com/en-us/privacy-statement)
+- [GitHub organization](https://github.com/Dow): claimed by Dow (Midland, MI;
+  https://www.dow.com/), zero public repositories.
+
+## Notes for crawlers and agents
+
+- www.dow.com is behind Akamai. A bare crawler User-Agent is answered with HTTP 403 and a
+  "Site Temporarily Unavailable" interstitial on **every** path, including paths that are
+  served. A full browser header set gets the real response. Treat a 403 from this host as
+  a bot challenge, not as evidence a document is missing.
+- Honor robots.txt: `/*/.search.servlet.json` and the `/en-us/search` paths are
+  disallowed. That servlet is AEM site-search internals, not a published API.

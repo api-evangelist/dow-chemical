@@ -1,0 +1,105 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  Live probes of the named /.well-known/ path list on every host this record knows —
+  the registrable domain (dow.com), www, the legal host (legal.dow.com) named in the
+  dow.com footer, and the corporate newsroom host (corporate.dow.com). Dow publishes no
+  API baseURL and no OpenAPI, so there are no servers[] hosts to add.
+note: >-
+  Dow serves a real RFC 9116 security.txt — byte-identical on all four hosts — pointing at
+  a Synack-hosted vulnerability disclosure policy. Every other named path 404s. The 404s
+  return the site's AEM error template with an honest 404 status, not a soft-200.
+  IMPORTANT for re-runs: www.dow.com sits behind an Akamai bot filter that answers a bare
+  crawler User-Agent with an HTTP 403 "Site Temporarily Unavailable" interstitial on EVERY
+  path, including ones it serves. A full browser header set (UA + Accept + Sec-Fetch-*)
+  gets the real response. A prior probe that recorded 403 was reading the challenge, not
+  the origin.
+hosts:
+  - host: www.dow.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: well-known/dow-chemical-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+  - host: dow.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: well-known/dow-chemical-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+      - path: /.well-known/aauth-resource.json
+        status: 404
+  - host: legal.dow.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: well-known/dow-chemical-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: corporate.dow.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        file: well-known/dow-chemical-security.txt
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+summary:
+  hosts_probed: 4
+  documents_probed: 32
+  documents_served: 4   # the same security.txt on 4 hosts
+  distinct_documents_served: 1
+  documents_absent: 28
+  served:
+    - /.well-known/security.txt

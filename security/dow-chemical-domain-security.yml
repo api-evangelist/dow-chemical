@@ -1,16 +1,58 @@
-generated: '2026-07-11'
+generated: '2026-09-07'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: >-
+  Live DNS/TLS/HTTP probes of every host this record knows: the Website host
+  (www.dow.com), the registrable domain, the legal host named in the dow.com footer, and
+  the corporate newsroom host. Dow publishes no API baseURL and no OpenAPI, so there are
+  no servers[] hosts to probe.
+note: >-
+  All three subject hosts are one wildcard certificate (CN=*.dow.com, O=Dow Inc.,
+  Midland, Michigan) behind Akamai. HSTS IS served — a previous automated pass recorded
+  hsts: null because the Akamai edge answers a bare crawler User-Agent with a 403
+  interstitial; the header is present on that response and on the origin response alike.
 hosts:
-- host: www.dow.com
-  https: true
-  tls_version: TLSv1.3
-  cert_expires: Oct 31 23:59:59 2026 GMT
-  hsts: null
+  - host: www.dow.com
+    https: true
+    tls_version: TLSv1.3
+    cert_issuer: DigiCert Global G3 TLS ECC SHA384 2020 CA1
+    cert_subject: CN=*.dow.com, O=Dow Inc., L=Midland, ST=Michigan, C=US
+    cert_expires: Mar 19 23:59:59 2027 GMT
+    hsts: max-age=15768000 ; includeSubDomains
+    hsts_max_age: 15768000
+    hsts_include_subdomains: true
+    hsts_preload: false
+    x_content_type_options: nosniff
+    x_frame_options: SAMEORIGIN
+    referrer_policy: strict-origin-when-cross-origin
+    content_security_policy: null
+    edge: akamai
+  - host: legal.dow.com
+    https: true
+    tls_version: TLSv1.3
+    cert_subject: CN=*.dow.com, O=Dow Inc., L=Midland, ST=Michigan, C=US
+    cert_expires: Mar 19 23:59:59 2027 GMT
+    hsts: max-age=15768000 ; includeSubDomains
+    edge: akamai
+  - host: corporate.dow.com
+    https: true
+    tls_version: TLSv1.3
+    cert_subject: CN=*.dow.com, O=Dow Inc., L=Midland, ST=Michigan, C=US
+    cert_expires: Mar 19 23:59:59 2027 GMT
+    hsts: max-age=15768000 ; includeSubDomains
+    edge: akamai
 domains:
-- domain: dow.com
-  dnssec: false
-  caa: []
-  spf: true
-  dmarc: true
-  dmarc_policy: quarantine
+  - domain: dow.com
+    dnssec: false
+    caa: []
+    caa_note: No CAA record is published, so any CA may issue for dow.com.
+    spf: true
+    dmarc: true
+    dmarc_policy: quarantine
+    dmarc_record: 'v=DMARC1; p=quarantine; rua=mailto:fglsmtp@dow.com'
+    dmarc_note: >-
+      p=quarantine with an aggregate reporting address, but no p=reject and no ruf.
+findings:
+  - HSTS is served on every host, includeSubDomains, ~182 days, not preloaded.
+  - No CAA record — an absence, and valid data, not an error.
+  - DNSSEC is not enabled on dow.com.
+  - DMARC is enforced at quarantine rather than reject.

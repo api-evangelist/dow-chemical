@@ -1,5 +1,5 @@
 aid: dow-chemical
-name: Dow Chemical
+name: Dow Inc. (formerly The Dow Chemical Company)
 url: >-
   https://raw.githubusercontent.com/api-evangelist/dow-chemical/refs/heads/main/apis.yml
 type: Index
@@ -31,8 +31,11 @@ tags:
   - Chemicals
   - Manufacturing
   - Fortune 500
+  - Specialty Chemicals
+  - Packaging
+  - Coatings
 created: '2026-03-24'
-modified: '2026-04-28'
+modified: '2026-09-07'
 description: >-
   Dow Chemical, now operating as Dow Inc., is a global materials science company
   headquartered in Midland, Michigan. Dow develops innovative products and solutions
@@ -41,15 +44,63 @@ description: >-
   infrastructure, mobility, and consumer applications.
 apis: []
 common:
+  - type: VulnerabilityDisclosure
+    url: security/dow-chemical-vulnerability-disclosure.yml
   - type: DomainSecurity
     url: security/dow-chemical-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/dow-chemical
   - type: Website
     url: https://www.dow.com
+  - type: WellKnown
+    url: well-known/dow-chemical-well-known.yml
+  - type: SecurityTxt
+    url: well-known/dow-chemical-security.txt
+  - type: Security
+    url: security/dow-chemical-vulnerability-disclosure.yml
+  - type: LLMsTxt
+    url: llms/dow-chemical-llms.txt
+  - type: GitHubOrganization
+    url: https://github.com/Dow
+  - type: Support
+    url: https://www.dow.com/en-us/support.html
+  - type: SignUp
+    url: https://www.dow.com/en-us/login.html
+  - type: TermsOfService
+    url: https://legal.dow.com/en-us/terms-of-use
+  - type: PrivacyPolicy
+    url: https://legal.dow.com/en-us/privacy-statement
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 specificationVersion: '0.23'
-x-parent: dow
-x-relationship: product
+x-enrichment:
+  date: '2026-09-07'
+  status: minimal
+  artifacts_added: 4
+  pass: local-v3
+x-coverage:
+  state: none
+  reason: not-a-software-company
+  detail: >-
+    Dow is a chemicals and materials manufacturer with no developer program of any kind —
+    dow.com is an Adobe Experience Manager product-catalog site whose only ordering path is
+    a human web workflow arranged through a customer service representative, and STEP 0b
+    contract discovery found no OpenAPI, GraphQL, MCP, SOAP or agent card on any host it
+    controls; the one machine-readable document Dow does serve is an RFC 9116 security.txt.
+  evidence:
+    - url: https://www.dow.com/.well-known/security.txt
+      status: 200
+    - url: https://www.dow.com/openapi.json
+      status: 404
+    - url: https://www.dow.com/llms.txt
+      status: 404
+    - url: https://www.dow.com/.well-known/api-catalog
+      status: 404
+    - url: https://www.dow.com/.well-known/agent-card.json
+      status: 404
+    - url: https://www.dow.com/en-us/support/order-management.html
+      status: 200
+    - url: https://api.github.com/orgs/Dow
+      status: 200
+  checked: '2026-09-07'
