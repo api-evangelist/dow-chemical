@@ -1,7 +1,9 @@
 ---
 title: Dow to Cut 4500 Employees in AI Overhaul
 url: https://www.wsj.com/business/earnings/dow-dow-q4-earnings-report-2025-11f0e814
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Dow Chemical" press release artificial intelligence'
 position: 3
 source: serpapi-google

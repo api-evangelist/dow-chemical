@@ -1,7 +1,9 @@
 ---
 title: Alphabet and Dow's new AI database will sort complex ...
 url: https://trellis.net/article/alphabet-x-dow-complex-plastics-database/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Dow Chemical" press release artificial intelligence'
 position: 4
 source: serpapi-google
